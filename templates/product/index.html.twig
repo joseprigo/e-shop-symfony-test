@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{%  block body %}
+    <div class="my-3 p-3 bg-white rounded box-shadow">
+        <h6 class="border-bottom border-gray pb-2 mb-0"> Product {{ product.name }}</h6>
+        {{ include('product/single-product.html.twig', {'post': product}) }}
+        <small class="d-block text-right mt-1">
+            <form method='POST' action="{{ path('basket_add')}}">
+            <select name="quantity">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                
+            </select>
+            <input name='product' type="hidden" value="{{ product.id }}">
+            <input type="submit" value="ADD to Chart">
+            </form>
+        </small>
+    </div>
+{% endblock %}

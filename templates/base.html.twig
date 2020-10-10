@@ -9,9 +9,21 @@
 </head>
 <body class="bg-light">
     
-    <nav class="navbar navbar-dark navbar-expand-md sticky-top bg-dark p-0">
+    <nav class="navbar navbar-dark navbar-expand-md sticky-top bg-dark p-0 d-flex justify-content-between">
         <a class="navbar-brand col-sm-3 col-md-2 mr-0"
            href="{{ path('shop_index') }}">Flora queen test</a>
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0"
+           href="">Voucher</a>
+        <a class="navbar-brand col-sm-2 col-md-1 mr-0"
+           href="{{ path('shop_basket') }}">Basket
+
+                {% if app.session.get('basket') != '' %}
+                    <span style='color:pink'> {{ app.session.get('basket')}} </span>
+                {% else %}
+                     <span> 0 <span> 
+                {% endif %}
+        </a>
+           
     </nav>
     
     

@@ -4,11 +4,12 @@
 {%  block body %}
     <div class="my-3 p-3 bg-white rounded box-shadow">
         <h6 class="border-bottom border-gray pb-2 mb-0">Shop</h6>
-    {%  for id, product in products %}
-        <a href="" >
+    {%  for product in products %}
+        <a href="{{ path('shop_show',{'id': product.id}) }}">
         {{ include('product/single-product.html.twig', {'post': product}) }}
+        </a>
         <small class="d-block text-right mt-1">
-                <a href="">ADD to Chart</a>
+                <a href="{{ path('basket_add_one',{'id': product.id})}}">ADD to Chart</a>
         </small>
     {% endfor %}
     </div>

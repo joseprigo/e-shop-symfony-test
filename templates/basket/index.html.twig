@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{%  block body %}
+    <div class="my-3 p-3 bg-white rounded box-shadow">
+        <h3 class="border-bottom border-gray pb-2 mb-0">BASKET </h3>
+        {% if products is empty %}
+            <div class="alert alert-warning" role="alert">
+                Your basket is empty, go back to the <a href='{{ path('shop_index') }}'> shop </a> and check out our products!
+            </div>
+                {% endif %}
+    {%  for product in products %}
+        <a href="{{ path('shop_show',{'id': product.info.id}) }}">
+        {{ include('product/single-product.html.twig', {'product': product.info}) }}
+        </a>
+        <span>
+            Quantity: {{ product.quantity }}
+        </span>
+        <small class="d-block text-right mt-1">
+                <a href="{{ path('basket_remove',{'id': product.info.id})}}">REMOVE</a>
+        </small>
+    {% endfor %}
+    </div>
+    <div class="my-3 p-3 bg-white rounded box-shadow">
+        <h3 class="border-bottom border-gray pb-2 mb-0">TOTAL </h3>
+        
+        <strong>{{ total }} €</strong>
+    </div>
+{% endblock %}
