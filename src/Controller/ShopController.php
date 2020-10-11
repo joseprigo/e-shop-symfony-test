@@ -55,17 +55,42 @@ class ShopController extends AbstractController{
      */
     public function basket(){
         $basketProducts = $this->get('session')->get('products');
+        $basketVouchers = $this->get('session')->get('vouchers');
         
-        $finalTotal = 0;
+        $finalTotal = 0; 
         foreach( $basketProducts as $product){
-            $finalTotal += $product['info']->getPrice() * $product['quantity'];
+            if($product['info']->getName() == 'A' && array_key_exists('V', $basketVouchers)){
+                $price = $product['info']->getPrice();
+                $quantityWithDiscount = intdiv($product['quantity'], 2);
+                $quantityNoDiscount = $product['quantity'] - $quantityWithDiscount;
+                $finalTotal += $price * $quantityNoDiscount + $price * 0.9 * $quantityWithDiscount;
+                
+            }else if($product['info']->getName() == 'B' && array_key_exists('R', $basketVouchers)){
+                $finalTotal += ($product['info']->getPrice() - 5) * $product['quantity'];
+            }else{
+                $finalTotal += $product['info']->getPrice() * $product['quantity'];
+            }
+            
+        }
+        
+        if($finalTotal > 40 && array_key_exists('S', $basketVouchers)){
+            $finalTotal = $finalTotal*0.95;
         }
         
         return $this->render('basket/index.html.twig',
                 [
                     'products' => $basketProducts,
+                    'vouchers' => $basketVouchers,
                     'total'    => $finalTotal
                 ]);
+    }
+    
+    /**
+     * @Route("/voucher/", name="shop_voucher")
+     */
+    public function voucher(){
+        
+        return $this->render('voucher/index.html.twig');
     }
     
 }

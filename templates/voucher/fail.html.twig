@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{%  block body %}
+    <div class="my-3 p-3 bg-white rounded box-shadow">
+        <h3 class="border-bottom border-gray pb-2 mb-3"> FAIL </h3>
+        
+        <div class="alert alert-danger" role="alert">
+            The voucher does not exist or it is already in use. go back to
+            <a href='{{ path('shop_voucher') }}'> vouchers</a>
+        </div>
+    </div>
+{% endblock %}

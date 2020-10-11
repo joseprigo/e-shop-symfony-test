@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{%  block body %}
+    <div class="my-3 p-3 bg-white rounded box-shadow">
+        <h3 class="border-bottom border-gray pb-2 mb-3"> Add a Voucher </h3>
+        
+            <form method='POST' action="{{ path('voucher_add')}}">
+            
+            <input name='voucher' type="text" placeholder='Name of your voucher'>
+            <input type="submit" value="ADD">
+            </form>
+    </div>
+{% endblock %}

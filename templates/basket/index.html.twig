@@ -20,6 +20,15 @@
         </small>
     {% endfor %}
     </div>
+    
+    <div class="my-3 p-3 bg-white rounded box-shadow">
+        <h3 class="border-bottom border-gray pb-2 mb-0">Vouchers </h3>
+        {%  for voucher in vouchers %}
+        {{ include('voucher/single-voucher.html.twig', {'voucher': voucher}) }}
+    {% endfor %}
+    </div>
+    
+    
     <div class="my-3 p-3 bg-white rounded box-shadow">
         <h3 class="border-bottom border-gray pb-2 mb-0">TOTAL </h3>
         
